@@ -1,0 +1,55 @@
+@use "sass:color";
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+
+  &Question {
+    margin: 5rem 0 3rem 0;
+    background-color: var(--dark-blue);
+    border-radius: 1rem;
+    padding: 0.8rem 0;
+    text-align: center;
+
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+
+  &Answers {
+    background-color: var(--light-blue);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0 0.5rem 1rem;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  &Button {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    button {
+      margin-top: 1rem;
+      width: 40%;
+
+      background-color: var(--dark-blue);
+      padding: 0.5rem 0;
+      border: none;
+      border-radius: 0.7rem;
+      font-weight: 700;
+      transition: filter 0.3s;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
+}

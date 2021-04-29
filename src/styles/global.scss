@@ -1,0 +1,61 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+@media (min-width: 720px) {
+  html {
+    font-size: 87.5%; // 14px
+  }
+}
+
+@media (min-width: 1000px) {
+  html {
+    font-size: 93.75%; // 15px
+  }
+}
+
+@media (min-width: 1366px) {
+  html {
+    font-size: 80%; // 12.8px
+  }
+}
+
+body {
+  box-sizing: border-box;
+  background: var(--white);
+}
+
+body,
+input,
+textarea,
+button {
+  font: 400 1rem Nunito, sans-serif;
+  color: var(--white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  font-family: Nunito, sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
