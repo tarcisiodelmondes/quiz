@@ -18,8 +18,8 @@
 
 <br>
 
-<p align="center">
-  Quiz
+<p align="left">
+  Project status: development
 </p>
 
 <a id="functionalities"></a>
