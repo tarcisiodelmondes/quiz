@@ -8,7 +8,7 @@
     margin: 5rem 0 3rem 0;
     background-color: var(--dark-blue);
     border-radius: 1rem;
-    padding: 0.8rem 0;
+    padding: 0.8rem 1rem;
     text-align: center;
 
     h2 {
@@ -17,17 +17,29 @@
     }
   }
 
+  .correct {
+    background-color: green;
+  }
+
+  .incorrect {
+    background-color: red;
+  }
+
   &Answers {
+    width: 100%;
     background-color: var(--light-blue);
     border-radius: 0.5rem;
+    border: none;
     padding: 0.5rem 0 0.5rem 1rem;
+    font-size: 1rem;
+    text-align: left;
 
     &:not(:last-child) {
       margin-bottom: 1rem;
     }
 
-    p {
-      font-size: 1rem;
+    &:disabled {
+      cursor: default;
     }
   }
 
