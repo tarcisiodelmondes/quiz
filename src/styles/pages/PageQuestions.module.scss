@@ -67,6 +67,10 @@
       &:hover {
         filter: brightness(0.9);
       }
+
+      &:disabled {
+        cursor: default;
+      }
     }
   }
 

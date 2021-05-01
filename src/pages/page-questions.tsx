@@ -13,12 +13,15 @@ type Results = {
   incorrect_answers: Array<string>;
 };
 
-type ResultsProps = {
+type PageQuestionsProps = {
   results: Results[];
   allAnswerShuffle: Array<any>;
 };
 
-export default function PageQuestions(data: ResultsProps) {
+export default function PageQuestions({
+  results,
+  allAnswerShuffle,
+}: PageQuestionsProps) {
   const [answerCorrect, setAnswerCorrect] = useState(0);
   const [answerIncorrect, setAnswerIncorrect] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -32,7 +35,7 @@ export default function PageQuestions(data: ResultsProps) {
   }
 
   function incrementAnswerCorrectOrIncorrect(answer: string) {
-    answer === data.results[currentQuestion].correct_answer
+    answer === results[currentQuestion].correct_answer
       ? setAnswerCorrect(answerCorrect + 1)
       : setAnswerIncorrect(answerIncorrect + 1);
   }
@@ -43,7 +46,7 @@ export default function PageQuestions(data: ResultsProps) {
   ) {
     if (hasStyleCorrectOrIncorrect) return;
 
-    answer === data.results[currentQuestion].correct_answer
+    answer === results[currentQuestion].correct_answer
       ? button.classList.add(styles.correct)
       : button.classList.add(styles.incorrect);
   }
@@ -56,7 +59,7 @@ export default function PageQuestions(data: ResultsProps) {
 
   return (
     <div className={styles.container}>
-      {currentQuestion >= data.allAnswerShuffle.length ? (
+      {currentQuestion >= allAnswerShuffle.length ? (
         <div className={styles.containerResult}>
           <h1>Completed quiz</h1>
 
@@ -64,7 +67,7 @@ export default function PageQuestions(data: ResultsProps) {
           <p>Incorrect answers: {answerIncorrect}</p>
 
           <span>
-            Hit rate: {(answerCorrect / data.allAnswerShuffle.length) * 100}%
+            Hit rate: {(answerCorrect / allAnswerShuffle.length) * 100}%
           </span>
           <div className={styles.containerLink}>
             <Link href="/">
@@ -75,10 +78,10 @@ export default function PageQuestions(data: ResultsProps) {
       ) : (
         <>
           <div className={styles.containerQuestion}>
-            <h2>{data.results[currentQuestion].question}</h2>
+            <h2>{results[currentQuestion].question}</h2>
           </div>
 
-          {data.allAnswerShuffle[currentQuestion].map((answer) => {
+          {allAnswerShuffle[currentQuestion].map((answer) => {
             return (
               <button
                 disabled={hasStyleCorrectOrIncorrect}
@@ -92,7 +95,12 @@ export default function PageQuestions(data: ResultsProps) {
           })}
 
           <div className={styles.containerButton}>
-            <button onClick={() => nextQuestion()}>Next</button>
+            <button
+              disabled={!hasStyleCorrectOrIncorrect}
+              onClick={() => nextQuestion()}
+            >
+              Next
+            </button>
           </div>
         </>
       )}
@@ -134,12 +142,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return shuffle([...results.incorrect_answers, results.correct_answer]);
   });
 
-  const newData = {
-    results: data.results,
-    allAnswerShuffle,
-  };
-
   return {
-    props: newData,
+    props: {
+      results: data.results,
+      allAnswerShuffle,
+    },
   };
 };
