@@ -18,11 +18,11 @@
   }
 
   .correct {
-    background-color: green;
+    background-color: #00a349;
   }
 
   .incorrect {
-    background-color: red;
+    background-color: #a33026;
   }
 
   &Answers {
@@ -33,6 +33,7 @@
     padding: 0.5rem 0 0.5rem 1rem;
     font-size: 1rem;
     text-align: left;
+    transition: filter 0.3s;
 
     &:not(:last-child) {
       margin-bottom: 1rem;
@@ -40,6 +41,10 @@
 
     &:disabled {
       cursor: default;
+    }
+
+    &:hover {
+      filter: brightness(0.9);
     }
   }
 
@@ -61,6 +66,87 @@
 
       &:hover {
         filter: brightness(0.9);
+      }
+    }
+  }
+
+  // Page of result
+
+  &Result {
+    margin-top: 8rem;
+    padding: 2rem 2rem;
+    background-color: var(--dark-blue);
+
+    h1 {
+      color: var(--peach);
+      font-size: 1.5rem;
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      color: #bfb2aa;
+
+      & + p {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    span {
+      display: flex;
+      color: var(--light-blue);
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .containerLink {
+      display: flex;
+      justify-content: center;
+
+      a {
+        background-color: var(--white);
+        border-radius: 5px;
+        color: var(--dark-blue);
+
+        padding: 0.5rem;
+        font-weight: 600;
+        text-align: center;
+        transition: filter 0.3s;
+
+        &:hover {
+          filter: brightness(0.9);
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .container {
+    width: 70%;
+
+    &Result {
+      width: 100%;
+
+      padding: 4rem 8rem;
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+        line-height: 1.5;
+      }
+
+      span {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+      }
+
+      a {
+        font-size: 1.3rem;
       }
     }
   }
