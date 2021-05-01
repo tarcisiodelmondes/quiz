@@ -18,18 +18,18 @@
 
 <br>
 
-<p align="center">
-  Quiz
+<p align="left">
+  Project status: development
 </p>
 
 <a id="functionalities"></a>
 
 ## Functionalities
 
-- [] Show API question and answer
-- [] Click on the answer and apply a different style
-- [] Skip to next question
-- [] Show the total number of correct and incorrect answer
+- [ ] Show API question and answer
+- [ ] Click on the answer and apply a different style
+- [ ] Skip to next question
+- [ ] Show the total number of correct and incorrect answer
 
 ## Application demo
 
