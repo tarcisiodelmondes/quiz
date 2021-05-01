@@ -19,17 +19,17 @@
 <br>
 
 <p align="left">
-  Project status: development
+  Project status: finished
 </p>
 
 <a id="functionalities"></a>
 
 ## Functionalities
 
-- [ ] Show API question and answer
-- [ ] Click on the answer and apply a different style
-- [ ] Skip to next question
-- [ ] Show the total number of correct and incorrect answer
+- [x] Show API question and answer
+- [x] Click on the answer and apply a different style
+- [x] Skip to next question
+- [x] Show the total number of correct and incorrect answer
 
 ## Application demo
 
