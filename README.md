@@ -49,10 +49,10 @@ Before you start, you need to have it installed on your computer:
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/tarcisiodelmondes/podcastr
+$ git clone https://github.com/tarcisiodelmondes/quiz
 
 # Access the project folder in the terminal/cmd
-$ cd podcastr
+$ cd quiz
 
 # Install the dependencies
 $ npm install
