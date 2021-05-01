@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { api } from '../services/api';
 import styles from '../styles/pages/PageQuestions.module.scss';
 
@@ -18,16 +18,15 @@ type ResultsProps = {
 };
 
 export default function PageQuestions(result: ResultsProps) {
-  const allAnswer = [
-    ...result.results[0].incorrect_answers,
-    result.results[0].correct_answer,
-  ];
-
-  //const allAnswerShuffle = shuffle(allAnswer);
-
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [hasStyleCorrectOrIncorrect, setHasStyleCorrectOrIncorrect] = useState(
     false,
   );
+
+  function nextQuestion() {
+    setCurrentQuestion(currentQuestion + 1);
+    setHasStyleCorrectOrIncorrect(false);
+  }
 
   function addClassCorrectOrIncorrect(
     button: HTMLButtonElement,
@@ -35,7 +34,7 @@ export default function PageQuestions(result: ResultsProps) {
   ) {
     if (hasStyleCorrectOrIncorrect) return;
 
-    answer === result.results[0].correct_answer
+    answer === result.results[currentQuestion].correct_answer
       ? button.classList.add(styles.correct)
       : button.classList.add(styles.incorrect);
   }
@@ -48,10 +47,10 @@ export default function PageQuestions(result: ResultsProps) {
   return (
     <div className={styles.container}>
       <div className={styles.containerQuestion}>
-        <h2>{result.results[0].question}</h2>
+        <h2>{result.results[currentQuestion].question}</h2>
       </div>
 
-      {result.allAnswerShuffle[0].map((answer) => {
+      {result.allAnswerShuffle[currentQuestion].map((answer) => {
         return (
           <button
             disabled={hasStyleCorrectOrIncorrect}
@@ -65,7 +64,7 @@ export default function PageQuestions(result: ResultsProps) {
       })}
 
       <div className={styles.containerButton}>
-        <button>Proxima</button>
+        <button onClick={() => nextQuestion()}>Proxima</button>
       </div>
     </div>
   );
