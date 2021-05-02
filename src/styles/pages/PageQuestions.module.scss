@@ -18,11 +18,11 @@
   }
 
   .correct {
-    background-color: #00a349;
+    background-color: var(--green);
   }
 
   .incorrect {
-    background-color: #a33026;
+    background-color: var(--red);
   }
 
   &Answers {
@@ -70,6 +70,33 @@
 
       &:disabled {
         cursor: default;
+      }
+    }
+  }
+
+  &Progress {
+    margin-top: 5rem;
+    width: 100%;
+    height: 3px;
+    background-color: #d6d6d6;
+
+    .progressBar {
+      display: block;
+      background-color: var(--green);
+      height: 3px;
+      position: relative;
+
+      & ~ p {
+        color: var(--dark-blue);
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: 1rem;
+        font-size: 1.2rem;
+
+        span {
+          font-size: 0.9rem;
+        }
       }
     }
   }

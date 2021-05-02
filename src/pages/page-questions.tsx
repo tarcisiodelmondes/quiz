@@ -102,6 +102,17 @@ export default function PageQuestions({
               Next
             </button>
           </div>
+          <div className={styles.containerProgress}>
+            <span
+              style={{
+                width: `${(currentQuestion / allAnswerShuffle.length) * 100}%`,
+              }}
+              className={styles.progressBar}
+            />
+            <p>
+              {currentQuestion} / <span>{allAnswerShuffle.length}</span>
+            </p>
+          </div>
         </>
       )}
     </div>
