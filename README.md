@@ -87,4 +87,4 @@ This project is under license from MIT. See the archive [LICENSE](.github/LICENS
 
 <p align="center">Made with :heart: by Tarcisio Delmondes</p>
 
-<br/> :email: &nbsp; Contact me: [![Linkedin Badge](https://img.shields.io/badge/-TarcísioDelmondes-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tarcisio-delmondes-892567207)](https://www.linkedin.com/in/tarcisio-delmondes-892567207)
+<br/> :email: &nbsp; Contact me: [![Linkedin Badge](https://img.shields.io/badge/-TarcísioDelmondes-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tarcisio-delmondes-892567207)](https://www.linkedin.com/in/tarcisio-delmondes)
