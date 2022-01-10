@@ -19,7 +19,7 @@
 <br>
 
 <p align="left">
-  Project status: finished
+  Project status: refactoring in progress
 </p>
 
 <a id="functionalities"></a>
