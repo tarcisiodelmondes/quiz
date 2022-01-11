@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { api } from '../services/api';
 import styles from '../styles/pages/PageQuestions.module.scss';
+import { shuffle } from '../utils/shuffle';
 
 type Results = {
   category: string;
@@ -15,7 +16,7 @@ type Results = {
 
 type PageQuestionsProps = {
   results: Results[];
-  allAnswerShuffle: Array<any>;
+  allAnswerShuffle: Array<string[]>;
 };
 
 export default function PageQuestions({
@@ -25,9 +26,8 @@ export default function PageQuestions({
   const [answerCorrect, setAnswerCorrect] = useState(0);
   const [answerIncorrect, setAnswerIncorrect] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [hasStyleCorrectOrIncorrect, setHasStyleCorrectOrIncorrect] = useState(
-    false,
-  );
+  const [hasStyleCorrectOrIncorrect, setHasStyleCorrectOrIncorrect] =
+    useState(false);
 
   function nextQuestion() {
     setCurrentQuestion(currentQuestion + 1);
@@ -51,9 +51,9 @@ export default function PageQuestions({
       : button.classList.add(styles.incorrect);
   }
 
-  function checkAnswer(event: HTMLButtonElement, answer: string) {
+  function checkAnswer(button: HTMLButtonElement, answer: string) {
     incrementAnswerCorrectOrIncorrect(answer);
-    addClassCorrectOrIncorrect(event, answer);
+    addClassCorrectOrIncorrect(button, answer);
     setHasStyleCorrectOrIncorrect(true);
   }
 
@@ -63,12 +63,20 @@ export default function PageQuestions({
         <div className={styles.containerResult}>
           <h1>Completed quiz</h1>
 
-          <p>Correct answers: {answerCorrect}</p>
-          <p>Incorrect answers: {answerIncorrect}</p>
+          <p>
+            Correct answers:{' '}
+            <span className={styles.totalCorrect}>{answerCorrect}</span>
+          </p>
 
-          <span>
+          <p>
+            Incorrect answers:{' '}
+            <span className={styles.totalIncorrect}>{answerIncorrect}</span>
+          </p>
+
+          <span className={styles.contentHitRat}>
             Hit rate: {(answerCorrect / allAnswerShuffle.length) * 100}%
           </span>
+
           <div className={styles.containerLink}>
             <Link href="/">
               <a>Go to home page</a>
@@ -102,6 +110,7 @@ export default function PageQuestions({
               Next
             </button>
           </div>
+
           <div className={styles.containerProgress}>
             <span
               style={{
@@ -119,44 +128,31 @@ export default function PageQuestions({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await api.get('/api.php', {
-    params: {
-      amount: 10,
-      category: 21,
-      difficulty: 'medium',
-      type: 'multiple',
-    },
-  });
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+  try {
+    const { data } = await api.get<{ results: Results[] }>('/api.php', {
+      params: {
+        amount: 10,
+        category: 21,
+        difficulty: 'easy',
+        type: 'multiple',
+      },
+    });
 
-  function shuffle(array: string[]) {
-    let currentIndex = array.length,
-      temporaryValue,
-      randomIndex;
+    const allAnswerShuffle = data.results.map((results) => {
+      return shuffle([...results.incorrect_answers, results.correct_answer]);
+    });
 
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
+    return {
+      props: {
+        results: data.results,
+        allAnswerShuffle,
+      },
+    };
+  } catch (error) {
+    return {
+      redirect: { destination: '/500', permanent: false },
+      props: {},
+    };
   }
-
-  const allAnswerShuffle = data.results.map((results) => {
-    return shuffle([...results.incorrect_answers, results.correct_answer]);
-  });
-
-  return {
-    props: {
-      results: data.results,
-      allAnswerShuffle,
-    },
-  };
 };
