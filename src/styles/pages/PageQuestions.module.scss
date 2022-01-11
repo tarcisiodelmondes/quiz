@@ -95,7 +95,7 @@
         margin-top: 1rem;
         font-size: 1.2rem;
 
-        span {
+        & > span + span {
           font-size: 0.9rem;
         }
       }

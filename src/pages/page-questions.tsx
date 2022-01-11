@@ -113,13 +113,15 @@ export default function PageQuestions({
 
           <div className={styles.containerProgress}>
             <span
+              data-testid="progress-bar"
               style={{
                 width: `${(currentQuestion / allAnswerShuffle.length) * 100}%`,
               }}
               className={styles.progressBar}
             />
             <p>
-              {currentQuestion} / <span>{allAnswerShuffle.length}</span>
+              <span data-testid="current-level">{currentQuestion}</span> /{' '}
+              <span data-testid="all-levels">{allAnswerShuffle.length}</span>
             </p>
           </div>
         </>
