@@ -19,7 +19,7 @@
 <br>
 
 <p align="left">
-  Project status: refactoring in progress
+  Project status: finish
 </p>
 
 <a id="functionalities"></a>
@@ -59,6 +59,9 @@ $ npm install
 
 # Start the application in development mode
 $ npm run dev
+
+# Run tests
+$ npm run test
 ```
 
 <a id="technology"></a>
