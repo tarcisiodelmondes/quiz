@@ -1,0 +1,36 @@
+@use 'sass:color';
+
+.container {
+  width: 100vw;
+  height: 100vh;
+
+  div {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    color: var(--black);
+
+    h1 {
+      font-weight: 600;
+      text-align: center;
+    }
+
+    a {
+      margin-top: 2rem;
+      background-color: var(--purple-dark);
+      color: var(--white);
+      font-size: 1.5rem;
+      font-weight: 700;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      transition: filter 0.3s;
+
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
+  }
+}
